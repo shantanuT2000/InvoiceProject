@@ -3,7 +3,7 @@ package com.invoice.request;
 import lombok.Data;
 
 @Data
-public class VendorModel {
+public class VendorRequest {
 
 	private Long vendorId;
 
