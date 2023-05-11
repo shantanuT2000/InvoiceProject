@@ -1,10 +1,15 @@
 package com.invoice.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,7 +30,13 @@ public class ProductModel {
     private double price;
     
     @Column(name = "description")
-    private double description;
+    private String description;
+    
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name="vendor_id")
+    private VendorModel vendorModel;
+
 
 }
 

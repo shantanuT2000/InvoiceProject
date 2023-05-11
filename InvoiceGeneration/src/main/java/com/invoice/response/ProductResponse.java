@@ -1,10 +1,10 @@
-package com.invoice.request;
+package com.invoice.response;
 
 import lombok.Data;
 
 @Data
-public class ProductRequest {
-
+public class ProductResponse {
+	
 	private Long productId;
 
 	private String name;
@@ -12,5 +12,6 @@ public class ProductRequest {
 	private double price;
 
 	private String description;
+
 
 }

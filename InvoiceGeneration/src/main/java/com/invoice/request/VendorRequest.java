@@ -1,5 +1,9 @@
 package com.invoice.request;
 
+import java.util.List;
+
+import com.invoice.models.ProductModel;
+
 import lombok.Data;
 
 @Data
@@ -14,5 +18,7 @@ public class VendorRequest {
 	private String Country;
 
 	private String Pincode;
+	
+    private List<ProductModel> productModels;
 
 }

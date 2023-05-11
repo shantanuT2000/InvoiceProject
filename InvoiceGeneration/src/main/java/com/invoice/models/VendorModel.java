@@ -2,6 +2,9 @@ package com.invoice.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,8 +41,16 @@ public class VendorModel {
 	    @OneToMany(mappedBy = "vendorModel")
 	    private List<InvoiceModel> invoiceModels;
 	    
-	    @ManyToOne
-	    @JoinColumn(name = "fk_customer_id")
-	    private CustomerModel customerModel;
+//	    @ManyToOne
+//	    @JoinColumn(name = "fk_customer_id")
+//	    private CustomerModel customerModel;
 
+	    @OneToMany(cascade=CascadeType.ALL)
+	    @JoinColumn(name="vendorId")
+	    private List<CustomerModel> customerModels;
+	    
+	    @OneToMany(cascade=CascadeType.ALL)
+	    @JsonManagedReference
+	    @JoinColumn(name="vendor_id")
+	    private List<ProductModel> productModels;
 }

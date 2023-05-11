@@ -1,12 +1,12 @@
-package com.invoice.request;
+package com.invoice.response;
 
 import com.invoice.models.ProductModel;
 
 import lombok.Data;
 
 @Data
-public class InvoiceInlineRequest {
-
+public class InvoiceInlineResponse {
+	
 	private Long lineItemId;
 
 	private int quantity;
@@ -16,5 +16,6 @@ public class InvoiceInlineRequest {
 	private int price;
 	
 	private ProductModel productModel;
+
 
 }
