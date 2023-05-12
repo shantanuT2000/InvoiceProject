@@ -1,7 +1,13 @@
 package com.invoice.models;
 
 
+import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -18,9 +24,12 @@ import lombok.Data;
 @Entity
 @Table(name = "invoice_line")
 @Data
-public class InvoiceInlineModel {
 
-    @Id
+public class InvoiceInlineModel  {
+
+   
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "line_item_id")
     private Long lineItemId;
@@ -29,14 +38,14 @@ public class InvoiceInlineModel {
     private int quantity;
     
     @Column(name = "working_hours")
-    private int WorkingHours;
+    private int workingHours;
     
     @Column(name = "price")
     private int price;
 
-    @OneToOne(cascade=CascadeType.ALL)
-//    @JsonManagedReference
+    @OneToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "fk_product_id")
+    @JsonIgnore
     private ProductModel productModel;
 
     @ManyToOne

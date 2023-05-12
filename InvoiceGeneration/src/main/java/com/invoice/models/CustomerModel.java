@@ -1,7 +1,16 @@
 package com.invoice.models;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,13 +25,14 @@ import lombok.Data;
 @Entity
 @Table(name = "customer")
 @Data
+
 public class CustomerModel {
 	
 
-	    @Id
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "customer_id")
-	    private Long CustomerId;
+	    private Long customerId;
 
 	    @Column(name = "first_name")
 	    private String firstName;
@@ -37,27 +47,21 @@ public class CustomerModel {
 	    private String customerPhoneNumber;
 	    
 	    @Column(name = "city")
-	    private String City;
+	    private String city;
 
 	    @Column(name = "country")
-	    private String Country;
+	    private String country;
 	    
 	    @Column(name = "invoice_number")
-	    private String InvoiceNumber;
-
-
-	    @OneToMany(mappedBy = "customerModel")
-	    private List<InvoiceModel> invoiceModels;
+	    private String invoiceNumber;
 	    
-//	    @OneToMany(mappedBy = "customerModel")
-//	    private List<VendorModel> vendorModels;
-//	    
-//	    @ManyToOne
-//	    @JoinColumn(name = "fk_customer_id")
-//	    private CustomerModel customerModel;
+	    @OneToMany(mappedBy = "customerModel", cascade = CascadeType.ALL)
+	    @JsonIgnore
+	   	private List<InvoiceModel> invoiceModels;
 	    
 	    @ManyToOne
-	    @JoinColumn(name = "fk_vendor_id")
+	    @JoinColumn(name = "vendorId")
+	    @JsonIgnore
 	    private VendorModel vendorModel;
 
 

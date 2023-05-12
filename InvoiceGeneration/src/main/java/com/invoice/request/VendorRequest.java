@@ -2,6 +2,7 @@ package com.invoice.request;
 
 import java.util.List;
 
+import com.invoice.models.CustomerModel;
 import com.invoice.models.ProductModel;
 
 import lombok.Data;
@@ -20,5 +21,7 @@ public class VendorRequest {
 	private String Pincode;
 	
     private List<ProductModel> productModels;
+    
+    private List<CustomerModel> customerModelList;
 
 }

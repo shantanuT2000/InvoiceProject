@@ -59,6 +59,7 @@ public InvoiceInlineResponse entityToInvoiceInlineResponse(InvoiceInlineModel in
 	invoiceInlineResponse.setQuantity(invoiceInlineEntity.getQuantity());
 	invoiceInlineResponse.setWorkingHours(invoiceInlineEntity.getWorkingHours());
 	invoiceInlineResponse.setPrice(invoiceInlineEntity.getPrice());
+	invoiceInlineResponse.setProductModel(invoiceInlineEntity.getProductModel());
 		  
 		   return invoiceInlineResponse;
 	   }
