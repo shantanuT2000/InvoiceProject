@@ -12,6 +12,8 @@ import java.util.UUID;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import com.invoice.Service.InvoiceService;
@@ -33,6 +35,12 @@ public class InvoiceServiceImpl implements InvoiceService{
 	
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	private final ResourceLoader resourceLoader;
+
+    public InvoiceServiceImpl(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 	
 	@Override
 	public String saveInvoice(InvoiceRequest invoiceRequest) {
@@ -86,10 +94,12 @@ public class InvoiceServiceImpl implements InvoiceService{
 	
         @Override
 		public File createExcelInvoice(Long id) {
-			 String inputTemplate = "target/Template1.xlsx";
+//			 String inputTemplate = "target/Template1.xlsx";
 			  try {
 				InvoiceModel invoiceModel = getInvoiceById(id);
-				InputStream inputStream = new FileInputStream(inputTemplate);
+//				InputStream inputStream = new FileInputStream(inputTemplate);
+				Resource resource = resourceLoader.getResource("classpath:Template1.xlsx");
+		        InputStream inputStream = resource.getInputStream();
 				String companyName =invoiceModel.getVendorModel().getVendorName();
 				OutputStream os = new FileOutputStream("/Users/shantanutidke/Downloads/"+companyName+"Invoice"+".xlsx");
 				
