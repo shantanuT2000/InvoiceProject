@@ -52,8 +52,7 @@ public class CustomerModel {
 	    @Column(name = "country")
 	    private String country;
 	    
-	    @Column(name = "invoice_number")
-	    private String invoiceNumber;
+	  
 	    
 	    @OneToMany(mappedBy = "customerModel", cascade = CascadeType.ALL)
 	    @JsonIgnore
